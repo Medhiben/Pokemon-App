@@ -1,19 +1,9 @@
-<!-- Chapitre 3 : Les Templates --> 
-<h1 class='center'>Pokémons</h1>
-<div class='container'>
-<div class="row">
-<div *ngFor='let pokemon of pokemonList' class="col m4 s6">
-  <div class="card horizontal" pkmnBorderCard>
-    <div class="card-image">
-      <img [src]="pokemon.picture">
+<nav>
+    <div class="nav-wrapper teal">
+<a href="#" class="brand-logo center">
+    Pokédex
+</a>
     </div>
-    <div class="card-stacked">
-      <div class="card-content">
-        <p>{{ pokemon.name }}</p>
-        <p><small>{{ pokemon.created }}</small></p>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-</div>
+
+</nav>
+<router-outlet></router-outlet>
