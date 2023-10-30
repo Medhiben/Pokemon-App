@@ -6,8 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-pokemon-form',
   templateUrl: './pokemon-form.component.html',
-  styles: [
-  ]
+  styleUrls: ['./pokemon-form.component.css']
 })
 export class PokemonFormComponent implements OnInit {
   //On a besoin de pokemon pour pouvoir récuperer par exemple la liste de spokemons car il nous fait les pokemons par l'Input
@@ -49,7 +48,14 @@ return this.pokemon.types.includes(type);
   this.router.navigate(['/pokemon', this.pokemon.id]);
   }
 
-  // isTypesValid(){
+  isTypesValid(type : string): boolean {
     
-  // }
+    if(this.pokemon.types.length == 1 && this.hasType(type)){
+      return false
+    }
+    if(this.pokemon.types.length > 2 && !this.hasType(type)){
+    return false
+    }
+    return true
+  }
 }
