@@ -5,6 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PokemonTypeColorPipe implements PipeTransform {
 
+  //C'est un pipe qui utilise la méthode transforme pour transformer chaque type en une couleur distincte par l'intruction switch
   transform(type: string): string {
     let color: string;
   
@@ -47,6 +48,7 @@ export class PokemonTypeColorPipe implements PipeTransform {
         break;
     }
   
+    // retourne une instruction materialize qui met une couleur dans le bulle chip
     return 'chip ' + color;
   
   }
