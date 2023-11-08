@@ -30,4 +30,8 @@ pokemon : Pokemon|undefined;
  goToPokemonList(){
   this.router.navigate(['/pokemons']);
  }
+
+ redirectedtoEditPokemon(pokemon: Pokemon){
+  this.router.navigate(['/edit/pokemon', pokemon.id]);
+ }
 }
