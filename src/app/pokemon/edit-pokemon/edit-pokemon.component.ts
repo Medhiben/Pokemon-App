@@ -26,7 +26,9 @@ constructor(
 ngOnInit():void {
 const pokemonId: string|null = this.route.snapshot.paramMap.get('id');
 if(pokemonId){
-  this.pokemon = this.pokemonservice.getPokemonById(+pokemonId);
+  this.pokemonservice.getPokemonById(+pokemonId).subscribe((response) =>
+  this.pokemon = response
+  );
 }else{
 this.pokemon = undefined;
 }

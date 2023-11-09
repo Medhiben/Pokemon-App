@@ -16,7 +16,9 @@ export class ListPokemonComponent implements OnInit {
     private pokemonService : PokemonService,
     ){}
   ngOnInit(){
-    this.pokemonList = this.pokemonService.getPokemonList();
+      this.pokemonService.getPokemonList().subscribe((response)=>{
+      this.pokemonList= response
+    });
   }
 
   goToPokemonList(pokemon: Pokemon){
