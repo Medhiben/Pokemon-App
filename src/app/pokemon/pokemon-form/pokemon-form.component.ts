@@ -44,8 +44,9 @@ return this.pokemon.types.includes(type);
 
   //
   onSubmit(){
-  console.log('Formulaire soumis');
-  this.router.navigate(['/pokemon', this.pokemon.id]);
+    this.pokemonService.updatePokemon(this.pokemon)
+    .subscribe(() =>   this.router.navigate(['/pokemon', this.pokemon.id])
+    )
   }
 
   isTypesValid(type : string): boolean {

@@ -23,9 +23,8 @@ pokemon : Pokemon|undefined;
  const pokemonId: string|null = this.route.snapshot.paramMap.get('id');
 
  if(pokemonId){
-  this.pokemonService.getPokemonById(+pokemonId).subscribe((response) =>
-  this.pokemon = response
-  )
+  this.pokemonService.getPokemonById(+pokemonId).subscribe( pokemon =>
+    this.pokemon = pokemon);
  }
  }
 
