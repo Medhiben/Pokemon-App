@@ -33,14 +33,14 @@ export class PokemonService {
     return of(errorValue);
   }
 
-  updatePokemon(pokemon: Pokemon){
+  updatePokemon(pokemon: Pokemon): Observable<null>{
     const HttpOptions = {
       headers : new HttpHeaders({'Content-Type' : 'application/json'})
     }
 
    return this.http.put('api/pokemons', pokemon, HttpOptions).pipe(
     tap((response) => this.log(response)),
-    catchError((error) => this.handleError(error, undefined),
+    catchError((error) => this.handleError(error, null),
    ))
   };
 
