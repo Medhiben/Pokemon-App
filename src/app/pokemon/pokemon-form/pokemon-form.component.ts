@@ -46,7 +46,7 @@ return this.pokemon.types.includes(type);
   onSubmit(){
     this.pokemonService.updatePokemon(this.pokemon)
     .subscribe(() => {
-         this.router.navigate(['/pokemon', this.pokemon.id])
+        this.router.navigate(['/pokemon', this.pokemon.id])
       })
   }
 
