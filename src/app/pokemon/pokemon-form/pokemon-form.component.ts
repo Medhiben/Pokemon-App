@@ -12,6 +12,7 @@ export class PokemonFormComponent implements OnInit {
   //On a besoin de pokemon pour pouvoir récuperer par exemple la liste de spokemons car il nous fait les pokemons par l'Input
   @Input() pokemon: Pokemon;
   types: string[];
+  isAddForm : boolean;
 
   constructor(
     private pokemonService: PokemonService,
@@ -21,6 +22,7 @@ export class PokemonFormComponent implements OnInit {
   ngOnInit() {
   //récupérer La liste des types de Pokemons pokemonTypeList
   this.types = this.pokemonService.getPokemonTypeList();
+  this.isAddForm = this.router.url.includes('add');
   }
 
 
@@ -44,11 +46,20 @@ return this.pokemon.types.includes(type);
 
   //
   onSubmit(){
-    this.pokemonService.updatePokemon(this.pokemon)
-    .subscribe(() => {
-        this.router.navigate(['/pokemon', this.pokemon.id])
-      })
+    if(this.isAddForm){
+    this.pokemonService.addPokemon(this.pokemon)
+    .subscribe((pokemon: Pokemon) => {
+      this.router.navigate(['/pokemon', pokemon.id])
+    })
+    }else{
+      this.pokemonService.updatePokemon(this.pokemon)
+      .subscribe(() => {
+          this.router.navigate(['/pokemon', this.pokemon.id])
+        })
+    }
+   
   }
+
 
   isTypesValid(type : string): boolean {
     
