@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Pokemon } from '../pokemon';
 import { Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
+import { PokemonService } from '../pokemon.service';
 
 @Component({
   selector: 'app-search-pokemon',
@@ -12,9 +13,16 @@ export class SearchPokemonComponent {
   searchTerms = new Subject<string>();
   pokemons$: Observable<Pokemon[]>;
 
-  constructor(private router: Router) {  }
+  constructor(private router: Router,
+              private pokemonService: PokemonService
+    ) {  }
 
   ngOnInit() : void {
+    this.pokemons$ = this.searchTerms.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap((term) => this.pokemonService.searchPokemon(term))
+    )
   }
 
   search(term: string){
